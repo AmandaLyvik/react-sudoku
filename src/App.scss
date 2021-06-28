@@ -1,0 +1,58 @@
+
+$cell-size: 50px;
+$border: 1px solid black;
+
+
+body {
+  background-color: wheat;
+}
+
+.content {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .sudoku-grid {
+    background-color: white;
+    width: max-content;
+    border-top: $border;
+    border-left: $border;
+    border-width: 3px;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      border-bottom: $border;
+
+      &:nth-child(3n) {
+        border-width: 3px;
+      }
+    
+      .cell {
+        border: none;
+        padding: 0;
+        width: $cell-size;
+        height: $cell-size;
+        border-right: $border;
+        font-size: 30px;
+        line-height: $cell-size;
+        text-align: center;
+
+        &.dark {
+          background-color: lightgray;
+        }
+
+        &.constant {
+          font-weight: bold;
+        }
+
+        &:nth-child(3n) {
+          border-width: 3px;
+        }
+      
+      }
+    }
+  }
+}
