@@ -122,13 +122,73 @@ export function readSudoku(input: string): Sudoku {
     for (let cursor = 0; cursor < sudoku1.length; cursor++) {
         const cell = input[cursor];
         if (cell !== '.') {
-            const y = Math.floor(cursor/9);
-            const x = cursor % 9;
-
+            //TODO indexToCoord
+            const [x,y] = indexToCoordinate(cursor);
             const constCell = makeConstantCell(Number(cell)); 
             sudoku = updateCell(x, y, constCell, sudoku);
         }
     }
 
     return sudoku;
+}
+
+function indexToCoordinate(index: number): [number,number] {
+    const y = Math.floor(index/9);
+    const x = index % 9;
+
+    return [x,y];
+}
+
+function coordToIndex(x: number, y: number): number {
+    return y * 9 + x;
+}
+
+export function getRow(sudoku: Sudoku, x: number, y: number): number[] {
+    const row: number[] = [];
+
+    for (let col = 0; col < 9; col++) {
+        const cell = sudoku.data[y].data[col];
+        if (cell.type !== 'empty') {
+            row.push(cell.value)
+        }
+    }
+
+    return row;
+}
+
+export function getCol(sudoku: Sudoku, x: number, y: number): number[] {
+    const col: number[] = [];
+
+    for (let row = 0; row < 9; row++) {
+        const cell = sudoku.data[row].data[x];
+        if (cell.type !== 'empty') {
+            col.push(cell.value);
+        }
+    }
+
+    return col;
+}
+
+export function getBox(sudoku: Sudoku, x:number, y: number): number[] {
+    const boxX = Math.floor(x/3);
+    const boxY = Math.floor(y/3);
+
+    const startX = 3 * boxX;
+    const startY = 3 * boxY;
+
+    const box: number[] = []; 
+
+    for (let xx = 0; xx < 3; xx++) {
+        for (let yy = 0; yy < 3; yy++) {
+            const realX = startX + xx;
+            const realY = startY + yy;
+            const cell = sudoku.data[realY].data[realX];
+
+            if (cell.type !== 'empty') {
+                box.push(cell.value);
+            }
+        }
+    }
+
+    return box;
 }

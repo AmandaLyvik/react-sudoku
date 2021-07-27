@@ -27,6 +27,7 @@ function App() {
       </div>
 
       <button onClick={() => setSudoku(startSudoku)}>reset</button>
+      <button onClick={() => solveSudoku()}>solve</button>
     </div>
     );
 
@@ -43,6 +44,10 @@ function App() {
       const newSudoku = updateCell(x, y, cell, sudoku);
       setSudoku(newSudoku);
     }
+  }
+
+  function solveSudoku() {
+    
   }
     
 }
