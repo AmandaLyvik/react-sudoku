@@ -132,14 +132,14 @@ export function readSudoku(input: string): Sudoku {
     return sudoku;
 }
 
-function indexToCoordinate(index: number): [number,number] {
+export function indexToCoordinate(index: number): [number,number] {
     const y = Math.floor(index/9);
     const x = index % 9;
 
     return [x,y];
 }
 
-function coordToIndex(x: number, y: number): number {
+export function coordToIndex(x: number, y: number): number {
     return y * 9 + x;
 }
 

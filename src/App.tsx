@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.scss';
 import { makeEmptyCell, makeValueCell, readSudoku, updateCell, validString} from './lib/sudoku';
 import { sudoku1 } from './data/sudoku1';
+import { solve } from './lib/solver';
 
 const startSudoku = readSudoku(sudoku1); 
 
@@ -47,7 +48,13 @@ function App() {
   }
 
   function solveSudoku() {
-    
+    const result = solve(sudoku);
+
+    if (result !== false) {
+      setSudoku(result);
+    } else {
+      console.warn('solver failed');
+    }
   }
     
 }
