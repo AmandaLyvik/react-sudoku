@@ -2,6 +2,8 @@
 $cell-size: 50px;
 $border: 1px solid black;
 
+$help-color: blue;
+
 
 body {
   background-color: wheat;
@@ -11,47 +13,111 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  //align-items: center;
+  //justify-content: center;
 
-  .sudoku-grid {
-    background-color: white;
-    width: max-content;
-    border-top: $border;
-    border-left: $border;
-    border-width: 3px;
+  .popup {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
 
-    .row {
-      display: flex;
-      flex-direction: row;
-      border-bottom: $border;
+    font-size: 12px;
 
-      &:nth-child(3n) {
-        border-width: 3px;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: thistle;
+    border: 1px solid black;
+  }
+  
+  &.help {
+    background-color: blue;
+  }
+
+  .leftcol {
+    flex-grow: 2;
+  }
+
+  .rightcol {
+    background-color: teal;
+    width: 0;
+    flex-grow: 2;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    gap: 1rem;
+
+    .solver {
+      max-width: 10rem;
+      
+      button {
+        width: 100%;
+        text-transform: capitalize;
       }
-    
-      .cell {
-        border: none;
-        padding: 0;
-        width: $cell-size;
-        height: $cell-size;
-        border-right: $border;
-        font-size: 30px;
-        line-height: $cell-size;
-        text-align: center;
+    }
 
-        &.dark {
-          background-color: lightgray;
-        }
+    .generate {
+      width: 100%;
+      color: white;
+      text-transform: capitalize;
+    }
+  }
 
-        &.constant {
-          font-weight: bold;
-        }
+  .centercol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-left: 1rem;
+    padding-right: 1rem; 
+
+    .sudoku-grid {
+      background-color: white;
+      width: max-content;
+      border-top: $border;
+      border-left: $border;
+      border-width: 3px;
+      border-color: black;
+
+
+      .row {
+        display: flex;
+        flex-direction: row;
+        border-bottom: $border;
 
         &:nth-child(3n) {
           border-width: 3px;
         }
       
+        .cell {
+          border: none;
+          padding: 0;
+          width: $cell-size;
+          height: $cell-size;
+          border-right: $border;
+          font-size: 30px;
+          line-height: $cell-size;
+          text-align: center;
+
+          &.dark {
+            background-color: lightgray;
+          }
+
+          &.help {
+            background-color: blue;
+          }
+
+          &.constant {
+            font-weight: bold;
+          }
+
+          &:nth-child(3n) {
+            border-width: 3px;
+          }
+        
+        }
       }
     }
   }

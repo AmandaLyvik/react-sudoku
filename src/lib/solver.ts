@@ -1,3 +1,4 @@
+import { shuffle } from "./generate";
 import { getBox, getCol, getRow, indexToCoordinate, makeConstantCell, makeValueCell, Sudoku, updateCell } from "./sudoku";
 
 export function legalOptions(sudoku: Sudoku, x: number, y: number): number[] {
@@ -36,6 +37,7 @@ export function solve(sudoku: Sudoku): Sudoku | false {
 type CellOption = [number, number, number[]];
 
 function branchOptions(sudoku: Sudoku, options: CellOption[]): Sudoku | false {
+    shuffle(options);
     console.log('all', options);
 
     let shortest = options[0];
@@ -46,7 +48,7 @@ function branchOptions(sudoku: Sudoku, options: CellOption[]): Sudoku | false {
     });
 
     for (const opt of shortest[2]) {
-        console.log('solving for', opt, 'position',shortest[0],shortest[1]);
+        console.log('solving for', opt, 'position', shortest[0], shortest[1]);
         const result = solve(updateCell(shortest[0], shortest[1], makeValueCell(opt), sudoku));
 
         if (result !== false) {
