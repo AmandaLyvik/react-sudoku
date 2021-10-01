@@ -38,7 +38,6 @@ type CellOption = [number, number, number[]];
 
 function branchOptions(sudoku: Sudoku, options: CellOption[]): Sudoku | false {
     shuffle(options);
-    console.log('all', options);
 
     let shortest = options[0];
     options.forEach(([x, y, opts]) => {
@@ -48,7 +47,6 @@ function branchOptions(sudoku: Sudoku, options: CellOption[]): Sudoku | false {
     });
 
     for (const opt of shortest[2]) {
-        console.log('solving for', opt, 'position', shortest[0], shortest[1]);
         const result = solve(updateCell(shortest[0], shortest[1], makeValueCell(opt), sudoku));
 
         if (result !== false) {
@@ -69,7 +67,6 @@ function simplifySudoku(sudoku: Sudoku): [Sudoku, CellOption[]] | false {
     do {
         updated = false;
         pass++;
-        console.log('singles pass', pass);
         options = [];
         
         for (let i = 0; i < 9*9; i++) {
@@ -79,7 +76,6 @@ function simplifySudoku(sudoku: Sudoku): [Sudoku, CellOption[]] | false {
                 const opts = legalOptions(sudoku, x, y);
 
                 if (opts.length === 0) {
-                    console.log(x,y,opts);
                     return false;
                 }
 

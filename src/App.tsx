@@ -26,10 +26,7 @@ function App() {
 
   return (
     <div className={`content ${state === State.Help ? 'help' : ''}`}>
-      {state === State.Help ? <div className="popup">
-        Select square to recieve hint
-      </div> : null}
-
+      
       <div className="leftcol"></div>
       <div className="centercol">
         <div className="sudoku-grid">
@@ -56,6 +53,13 @@ function App() {
         </div>
       </div>
       <div className="rightcol">
+
+        {state === State.Help ? <div className="popup">
+          <div className="padding">
+          Select a square to recieve a hint!
+          </div>
+        </div> : null}
+
         <div className="solver">
           <button onClick={() => setSudoku(resetSudoku)}>reset</button>
           <button disabled={solving} onClick={() => solveSudoku()}>solve</button>
