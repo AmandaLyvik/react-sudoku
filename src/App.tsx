@@ -29,7 +29,7 @@ function App() {
       
       <div className="leftcol"></div>
       <div className="centercol">
-        <div className="sudoku-grid">
+        <div className="sudoku-grid shadow">
           {sudoku.data.map((row, y) => <div className="row">
             {row.data.map((cell, x) => {
               if (state === State.Help) {
@@ -55,14 +55,14 @@ function App() {
       <div className="rightcol">
         
         <div className="info">
-          {state === State.Help ? <div className="popup">
+          {state === State.Help ? <div className="popup shadow">
             <div className="padding">
             Select a square to recieve a hint!
             </div>
           </div> : null}
         </div>
 
-        <div className="functions">
+        <div className="functions shadow">
           <button onClick={() => setSudoku(resetSudoku)}>reset</button>
           <button disabled={solving} onClick={() => solveSudoku()}>solve</button>
           <button onClick={() => setState(state === State.Normal ? State.Help : State.Normal)}>
