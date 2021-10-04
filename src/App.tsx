@@ -53,25 +53,25 @@ function App() {
         </div>
       </div>
       <div className="rightcol">
+        
+        <div className="info">
+          {state === State.Help ? <div className="popup">
+            <div className="padding">
+            Select a square to recieve a hint!
+            </div>
+          </div> : null}
+        </div>
 
-        {state === State.Help ? <div className="popup">
-          <div className="padding">
-          Select a square to recieve a hint!
-          </div>
-        </div> : null}
-
-        <div className="solver">
+        <div className="functions">
           <button onClick={() => setSudoku(resetSudoku)}>reset</button>
           <button disabled={solving} onClick={() => solveSudoku()}>solve</button>
           <button onClick={() => setState(state === State.Normal ? State.Help : State.Normal)}>
             {state === State.Normal ? 'help' : 'normal'}
           </button>
-        </div>
 
-        <div className="generate">
           <div className="difficulty">
-            <div className="label">difficulty</div>
-            <select onChange={x => setDifficulty(Number(x.target.value))}>
+            <label htmlFor="difficulty">difficulty: </label>
+            <select id="difficulty" onChange={x => setDifficulty(Number(x.target.value))}>
               {difficulties.map(x => <option selected={x === difficulty} value={x}>{x}</option>)}
             </select>
           </div>
